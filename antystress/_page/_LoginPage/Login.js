@@ -22,22 +22,20 @@ const Login = ({ navigation }) => {
         console.log('JWT Token:', token);
         navigation.navigate('MainPage');
       } else {
-        Alert.alert('Błąd logowania', 'Nieprawidłowy login lub hasło');
+        Alert.alert('Login Error', 'Invalid username or password');
       }
     } catch (error) {
-      console.error('Błąd podczas logowania:', error);
+      console.error('Login Error:', error);
       if (error.response) {
-      
-
-        console.error('Szczegóły błędu:', error.response.data);
-        Alert.alert('Błąd logowania', error.response.data);
+        console.error('Error details:', error.response.data);
+        Alert.alert('Login Error', error.response.data);
       } else if (error.request) {
-        console.error('Brak odpowiedzi od serwera:', error.request);
-        Alert.alert('Błąd', 'Brak odpowiedzi od serwera. Spróbuj ponownie później.');
+        console.error('No response from the server:', error.request);
+        Alert.alert('Error', 'No response from the server. Please try again later.');
       } else {
         // Something happened in setting up the request that triggered an Error
-        console.error('Błąd podczas konfiguracji zapytania:', error.message);
-        Alert.alert('Błąd', 'Wystąpił błąd podczas logowania. Spróbuj ponownie później.');
+        console.error('Error during request setup:', error.message);
+        Alert.alert('Error', 'An error occurred during login. Please try again later.');
       }
     }
   };
@@ -57,13 +55,13 @@ const Login = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Hasło"
+        placeholder="Password"
         onChangeText={text => setPassword(text)}
         value={password}
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Zaloguj</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );

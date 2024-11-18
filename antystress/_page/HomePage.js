@@ -2,26 +2,32 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
+  // Navigate to the login screen
   const goToLogin = () => {
     navigation.navigate('Login');
   };
 
+  // Navigate to the registration screen
   const goToRejestracja = () => {
     navigation.navigate('Rejestracja');
   };
 
   return (
     <View style={styles.container}>
+      {/* Display the image */}
       <Image
         source={require('./mozg.jpg')}
         style={styles.image}
       />
-      <Text style={styles.heading}>Strona główna</Text>
+      {/* Page heading */}
+      <Text style={styles.heading}>Home Page</Text>
+      {/* Registration button */}
       <TouchableOpacity style={styles.button} onPress={goToRejestracja}>
-        <Text style={styles.buttonText}>Rejestracja</Text>
+        <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
+      {/* Login button */}
       <TouchableOpacity style={styles.button} onPress={goToLogin}>
-        <Text style={styles.buttonText}>Logowanie</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );

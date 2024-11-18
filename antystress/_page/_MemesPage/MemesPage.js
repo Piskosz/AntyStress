@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 const Memes = ({ navigation }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Array of images to display
   const images = [
     require('./image(1).jpg'),
     require('./image(2).jpg'), 
@@ -32,19 +33,22 @@ const Memes = ({ navigation }) => {
     require('./image(25).jpg'), 
   ];
 
+  // Function to change to the next image
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   return (
     <View style={styles.container}>
+      {/* Display the current image */}
       <Image 
         source={images[currentImageIndex]} 
         style={styles.image} 
         resizeMode="contain"
       />
+      {/* Button to move to the next image */}
       <TouchableOpacity style={styles.button} onPress={nextImage}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );

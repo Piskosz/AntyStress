@@ -10,12 +10,15 @@ const RejestracjaPage = () => {
   });
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
+  // Function to handle input changes and update formData
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Function to handle form submission (register user)
   const handleSubmit = async () => {
     try {
+      // Send registration data to the backend API
       const response = await axios.post(
         'http://172.28.16.1:8080/Rejestracja/dodawanie/',
         [formData],
@@ -26,27 +29,30 @@ const RejestracjaPage = () => {
         }
       );
       console.log(response.data.message);
-      setRegistrationSuccess(true);
+      setRegistrationSuccess(true); // Update registration success state
     } catch (error) {
-      console.error('Błąd podczas rejestracji:', error);
-      console.error('Szczegóły błędu:', error.response.data);
+      console.error('Registration error:', error);
+      console.error('Error details:', error.response.data);
     }
   };
 
+  // Function to display success message after successful registration
   const renderSuccessMessage = () => {
     if (registrationSuccess) {
-      return <Text style={styles.successMessage}>Poprawnie zarejestrowano użytkownika!</Text>;
+      return <Text style={styles.successMessage}>User successfully registered!</Text>;
     }
     return null;
   };
 
   return (
     <View style={styles.container}>
+      {/* Display an image */}
       <Image
         source={require('./mozg.jpg')}
         style={styles.image}
       />
-      {renderSuccessMessage()}
+      {renderSuccessMessage()} {/* Show success message if registration was successful */}
+      {/* Input fields for login, password, and email */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -58,7 +64,7 @@ const RejestracjaPage = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="HASŁO"
+          placeholder="PASSWORD"
           onChangeText={(text) => handleInputChange('haslo', text)}
           value={formData.haslo}
           secureTextEntry={true}
@@ -67,12 +73,13 @@ const RejestracjaPage = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="MAIL"
+          placeholder="EMAIL"
           onChangeText={(text) => handleInputChange('mail', text)}
           value={formData.mail}
         />
       </View>
-      <Button title="Zarejestruj się" onPress={handleSubmit} />
+      {/* Register button */}
+      <Button title="Register" onPress={handleSubmit} />
     </View>
   );
 };

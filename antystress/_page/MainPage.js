@@ -2,30 +2,39 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const MainPage = ({ navigation }) => {
+  // Navigate to the StressPage
   const goToStressPage = () => {
     navigation.navigate('StressPage');
   };
+
+  // Navigate to the Videos page
   const goToVideos = () => {
     navigation.navigate('Videos');
   };
+
+  // Navigate to the Memes page
   const goToMemes = () => {
     navigation.navigate('Memes');
   };
 
   return (
     <View style={styles.container}>
+      {/* Display the image */}
       <Image
         source={require('./mozg.jpg')}
         style={styles.image}
       />
+      {/* Memes button */}
       <TouchableOpacity style={styles.button} onPress={goToMemes}>
-        <Text style={styles.buttonText}>Memy</Text>
+        <Text style={styles.buttonText}>Memes</Text>
       </TouchableOpacity>
+      {/* Videos button */}
       <TouchableOpacity style={styles.button} onPress={goToVideos}>
-        <Text style={styles.buttonText}>Filmy</Text>
+        <Text style={styles.buttonText}>Videos</Text>
       </TouchableOpacity>
+      {/* Stress test button */}
       <TouchableOpacity style={styles.button} onPress={goToStressPage}>
-        <Text style={styles.buttonText}>Zmierz stres</Text>
+        <Text style={styles.buttonText}>Measure Stress</Text>
       </TouchableOpacity>
     </View>
   );

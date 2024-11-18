@@ -7,6 +7,7 @@ const StressPage2 = ({ navigation }) => {
   const [isImage, setIsImage] = useState(true);
   const [mediaCount, setMediaCount] = useState(0);
 
+  // Define an array of media (images and videos)
   const media = [
     { type: 'image', source: require('./image(1).jpg') },
     { type: 'image', source: require('./image(2).jpg') },
@@ -29,29 +30,33 @@ const StressPage2 = ({ navigation }) => {
     { type: 'video', source: require('./film9.mp4') }
   ];
 
+  // Navigate to StressPage if media count is 5 or more
   useEffect(() => {
     if (mediaCount >= 5) {
       navigation.navigate('StressPage');
     }
   }, [mediaCount]);
 
+  // Function to switch to the next media (randomly)
   const nextMedia = () => {
     let nextIndex = Math.floor(Math.random() * media.length);
     setCurrentMediaIndex(nextIndex);
-    setIsImage(media[nextIndex].type === 'image');
+    setIsImage(media[nextIndex].type === 'image'); // Determine if it's an image or video
     setMediaCount(mediaCount + 1);
   };
 
   return (
     <View style={styles.container}>
+      {/* Display image or video based on the media type */}
       {isImage ? (
         <Image source={media[currentMediaIndex].source} style={styles.media} resizeMode="contain" />
       ) : (
         <Video source={media[currentMediaIndex].source} style={styles.media} resizeMode="contain" />
       )}
 
+      {/* Button to load the next media */}
       <TouchableOpacity style={styles.button} onPress={nextMedia}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
   },
   media: {
     width: '90%',
-    height: 300, 
+    height: 300,
     marginBottom: 20,
   },
   button: {

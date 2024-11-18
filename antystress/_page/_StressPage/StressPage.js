@@ -4,11 +4,12 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 const StressPage = ({ navigation }) => {
   const [stressLevel, setStressLevel] = useState(0);
 
+  // Handle button press and update stress level
   const handleButtonPress = (value) => {
-    console.log('Naciśnięto przycisk z wartością:', value);
+    console.log('Button pressed with value:', value);
     setStressLevel(value);
     if (value <= 3) {
-      Alert.alert('Weź się do roboty');
+      Alert.alert('Get to work');
     } else {
       navigation.navigate('StressPage2');
     }
@@ -16,15 +17,15 @@ const StressPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Wskaźnik stresu: {stressLevel}</Text>
+      <Text style={styles.heading}>Stress Level: {stressLevel}</Text>
       {[...Array(10)].map((_, index) => (
         <TouchableOpacity
           key={index}
           style={[
             styles.button,
-            index === 0 && styles.first,
-            index === 9 && styles.last,
-            stressLevel === 10 - index && styles.clicked,
+            index === 0 && styles.first, // Apply special styles for the first button
+            index === 9 && styles.last,  // Apply special styles for the last button
+            stressLevel === 10 - index && styles.clicked, // Apply clicked style based on stress level
           ]}
           onPress={() => handleButtonPress(10 - index)}>
           <Text style={styles.buttonText}>{10 - index}</Text>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 40,
   },
   clicked: {
-    backgroundColor: 'red',
+    backgroundColor: 'red', // Change button color when clicked
   },
 });
 

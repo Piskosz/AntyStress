@@ -5,6 +5,7 @@ import Video from 'react-native-video';
 const Videos = ({ navigation }) => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
+  // Define an array of video sources
   const videos = [
     require('./film1.mp4'),
     require('./film2.mp4'),
@@ -22,19 +23,22 @@ const Videos = ({ navigation }) => {
     require('./film14.mp4'),
   ];
 
+  // Function to go to the next video, looping back to the first one
   const nextVideo = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
   };
 
   return (
     <View style={styles.container}>
+      {/* Display the current video */}
       <Video 
         source={videos[currentVideoIndex]} 
         style={styles.video} 
         resizeMode="contain"
       />
+      {/* Button to load the next video */}
       <TouchableOpacity style={styles.button} onPress={nextVideo}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );
