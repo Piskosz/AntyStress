@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
 import axios from 'axios';
 
 const RejestracjaPage = () => {
@@ -10,15 +10,47 @@ const RejestracjaPage = () => {
   });
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  // Function to handle input changes and update formData
   const handleInputChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Function to handle form submission (register user)
+  const validateInputs = () => {
+    const { login, haslo, mail } = formData;
+
+    // Sprawdzenie, czy login i hasło są puste
+    if (!login || !haslo) {
+      Alert.alert('Validation Error', 'Login and Password cannot be empty.');
+      return false;
+    }
+
+    // Sprawdzenie, czy login i hasło nie przekraczają 20 znaków
+    if (login.length > 20 || haslo.length > 20) {
+      Alert.alert('Validation Error', 'Login and Password cannot exceed 20 characters.');
+      return false;
+    }
+
+    // Sprawdzenie, czy e-mail jest pusty
+    if (!mail) {
+      Alert.alert('Validation Error', 'Email cannot be empty.');
+      return false;
+    }
+
+    // Sprawdzenie poprawności formatu e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(mail)) {
+      Alert.alert('Validation Error', 'Please enter a valid email address.');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
+    if (!validateInputs()) {
+      return; // Stops execution if validation fails
+    }
+
     try {
-      // Send registration data to the backend API
       const response = await axios.post(
         'http://172.28.16.1:8080/Rejestracja/dodawanie/',
         [formData],
@@ -29,14 +61,20 @@ const RejestracjaPage = () => {
         }
       );
       console.log(response.data.message);
-      setRegistrationSuccess(true); // Update registration success state
+      setRegistrationSuccess(true);
     } catch (error) {
+      if (error.response) {
+        // Server-side error (500, 400, etc.)
+        Alert.alert('Registration error', error.response?.data || 'Server error');
+      } else {
+        // Network or unexpected error
+        Alert.alert('Registration error', 'An unexpected error occurred.');
+      }
       console.error('Registration error:', error);
-      console.error('Error details:', error.response.data);
+      console.error('Error details:', error.response?.data);
     }
   };
 
-  // Function to display success message after successful registration
   const renderSuccessMessage = () => {
     if (registrationSuccess) {
       return <Text style={styles.successMessage}>User successfully registered!</Text>;
@@ -46,13 +84,11 @@ const RejestracjaPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* Display an image */}
       <Image
         source={require('./mozg.jpg')}
         style={styles.image}
       />
-      {renderSuccessMessage()} {/* Show success message if registration was successful */}
-      {/* Input fields for login, password, and email */}
+      {renderSuccessMessage()}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}

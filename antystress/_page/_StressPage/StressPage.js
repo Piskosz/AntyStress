@@ -4,7 +4,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 const StressPage = ({ navigation }) => {
   const [stressLevel, setStressLevel] = useState(0);
 
-  // Handle button press and update stress level
   const handleButtonPress = (value) => {
     console.log('Button pressed with value:', value);
     setStressLevel(value);
@@ -23,9 +22,9 @@ const StressPage = ({ navigation }) => {
           key={index}
           style={[
             styles.button,
-            index === 0 && styles.first, // Apply special styles for the first button
-            index === 9 && styles.last,  // Apply special styles for the last button
-            stressLevel === 10 - index && styles.clicked, // Apply clicked style based on stress level
+            index === 0 && styles.first,
+            index === 9 && styles.last,
+            stressLevel === 10 - index && styles.clicked,
           ]}
           onPress={() => handleButtonPress(10 - index)}>
           <Text style={styles.buttonText}>{10 - index}</Text>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 40,
   },
   clicked: {
-    backgroundColor: 'red', // Change button color when clicked
+    backgroundColor: 'red',
   },
 });
 

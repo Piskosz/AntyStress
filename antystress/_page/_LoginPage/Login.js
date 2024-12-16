@@ -33,7 +33,6 @@ const Login = ({ navigation }) => {
         console.error('No response from the server:', error.request);
         Alert.alert('Error', 'No response from the server. Please try again later.');
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error('Error during request setup:', error.message);
         Alert.alert('Error', 'An error occurred during login. Please try again later.');
       }
