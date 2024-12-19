@@ -1,19 +1,16 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import RejestracjaPage from './RejestrationPage';
+import RejestracjaPage from '../_page/_Rejestration/RejestrationPage';
 import { Alert } from 'react-native';
 import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 
 test('renders RejestracjaPage component correctly', () => {
     const { getByPlaceholderText, getByText } = render(<RejestracjaPage />);
   
-    // Sprawdzenie obecności pól tekstowych
     expect(getByPlaceholderText('LOGIN')).toBeTruthy();
     expect(getByPlaceholderText('PASSWORD')).toBeTruthy();
     expect(getByPlaceholderText('EMAIL')).toBeTruthy();
   
-    // Sprawdzenie obecności przycisku
     expect(getByText('Register')).toBeTruthy();
   });
   
@@ -21,10 +18,8 @@ test('renders RejestracjaPage component correctly', () => {
   test('shows validation error when login is empty', () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
   
-    // Wciśnięcie przycisku bez wypełnienia danych
     fireEvent.press(getByText('Register'));
   
-    // Sprawdź, czy Alert z walidacją został wywołany
     expect(() => getByText('Validation Error')).toBeTruthy();
   });
 
@@ -137,9 +132,7 @@ test('does not show success message if registration fails', async () => {
 
   await fireEvent.press(getByText('Register'));
 
-  // Check that the success message is not shown
   expect(() => getByText('User successfully registered!')).toThrow();
 
-  // Check that the error alert is triggered
   expect(Alert.alert).toHaveBeenCalledWith('Registration error', 'An unexpected error occurred.');
 });

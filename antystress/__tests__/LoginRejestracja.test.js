@@ -2,10 +2,8 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import Login from './Login';
+import Login from '../_page/_LoginPage/Login';
 import { Alert } from 'react-native';
-
-
 
 test('renders correctly', () => {
   const { getByPlaceholderText, getByText } = render(<Login />);
@@ -46,28 +44,23 @@ test('calls API and navigates on successful login', async () => {
     const passwordInput = getByPlaceholderText('Password');
     expect(passwordInput.props.secureTextEntry).toBe(true);
   });
-  jest.spyOn(Alert, 'alert'); // Użycie spyOn do monitorowania Alert.alert
+  jest.spyOn(Alert, 'alert');
 
 test('shows error alert on failed login', async () => {
   const mock = new MockAdapter(axios);
   
-  // Symulowanie odpowiedzi błędu z serwera
   mock.onPost('http://172.28.16.1:8080/testowy').reply(400, 'Invalid username or password');
   
   const { getByPlaceholderText, getByText } = render(<Login />);
   
-  // Symulowanie wpisywania danych
   fireEvent.changeText(getByPlaceholderText('Login'), 'wronguser');
   fireEvent.changeText(getByPlaceholderText('Password'), 'wrongpassword');
   
-  // Symulowanie kliknięcia przycisku logowania
   fireEvent.press(getByText('Login'));
 
-  // Czekamy na wywołanie alertu
   await waitFor(() => {
     expect(Alert.alert).toHaveBeenCalledWith('Login Error', 'Invalid username or password');
   });
 
-  // Resetowanie mocka po teście
   mock.reset();
 });
