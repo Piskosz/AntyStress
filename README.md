@@ -7,7 +7,7 @@
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Tytuł**               | Prawidłowa Rejestracja                                                                                |
 | **Warunki początkowe**  | Aplikacja jest otwarta i kliknięto rejestracja                                                                                      |
-| **Kroki testowe**       | 1. W polu "Dodaj nowe zadanie" wprowadź opis zadania (np. "Nowe zadanie"). <br> 2. Kliknij przycisk "Dodaj". |
-| **Oczekiwany rezultat** | Zadanie "Nowe zadanie" powinno pojawić się na liście zadań.                                                  |
+| **Kroki testowe**       | 1.podanie loginu który nie przekracza 20 znaków  <br> 2.podanie hasła które nie przekracza 20 znaków  <br> 3.podanie prawidłowego maila  <br> 4.klikniecie przycisk register |
+| **Oczekiwany rezultat** | dostanie komunikatu że user prawidłowo się zarejestrował                                                 |
 
 ---
