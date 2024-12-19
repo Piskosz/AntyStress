@@ -91,7 +91,7 @@
 
 #### Test 9: Błędne zalogowanie 
 
-| **ID**                  | **1**                                                                                                        |
+| **ID**                  | **9**                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Tytuł**               | Błędne zalogowanie                                                                               |
 | **Warunki początkowe**  | Aplikacja jest otwarta i kliknięto rejestracja                                                                                      |
@@ -102,7 +102,7 @@
 
 #### Test 10:  Błędne zalogowanie 
 
-| **ID**                  | **1**                                                                                                        |
+| **ID**                  | **10**                                                                                                        |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Tytuł**               | Błędne zalogowanie                                                                                 |
 | **Warunki początkowe**  | Aplikacja jest otwarta i kliknięto rejestracja                                                                                      |
