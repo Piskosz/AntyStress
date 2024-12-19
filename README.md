@@ -19,7 +19,7 @@
 | **Tytuł**               | Tytuł Błędna rejestracja (login)                                                                              |
 | **Warunki początkowe**  | Aplikacja jest otwarta i kliknięto rejestracja                                                                                      |
 | **Kroki testowe**       | 1.podanie loginu który przekracza 20 znaków <br> 2.podanie hasła które nie przekracza 20 znaków <br> 3.podanie prawidłowego maila 
- <br> 4.klikniecie przycisk register |
+<br> 4.klikniecie przycisk register |
 | **Oczekiwany rezultat** | dostanie komunikatu że login jest za długi                                              |
 
 ---
@@ -30,8 +30,7 @@
 | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
 | **Tytuł**               | Błędna rejestracja (haslo)                                                                              |
 | **Warunki początkowe**  | Aplikacja jest otwarta i kliknięto rejestracja                                                                                      |
-| **Kroki testowe**       |1.podanie loginu który nie przekracza 20 znaków <br> 2.podanie hasła które przekracza 20 znaków <br> 3.podanie prawidłowego maila <br> 
- 4.klikniecie przycisk register |
+| **Kroki testowe**       |1.podanie loginu który nie przekracza 20 znaków <br> 2.podanie hasła które przekracza 20 znaków <br> 3.podanie prawidłowego maila <br> 4.klikniecie przycisk register |
 | **Oczekiwany rezultat** | dostanie komunikatu że haslo jest za długie                                              |
 
 ---
