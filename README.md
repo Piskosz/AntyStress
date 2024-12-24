@@ -1,3 +1,59 @@
+
+# Antystress App
+
+## Kurs 
+
+Testowanie i Jakość Oprogramowania
+
+## Autor
+
+Hubert Kapuściński
+
+## Temat Projektu
+
+Aplikacja AntyStress - aplikacja antystresowa
+
+## Opis Projektu
+
+Aplikacja Antystress - aplikacja stworzona przy użyciu React Native która pozwala użytkowniką oglądać śmieszne filmy i memy.
+
+-Rejeestracja/logowanie
+-Ogladanie śmiesznych memów i filmów
+-Mierzenie stresu 
+
+## **Instalacja i uruchomienie aplikacji:**
+
+1. **Pobierz projekt:**
+
+- Skopiuj lub pobierz projekt z repozytorium.
+
+2. **Zainstaluj Node.js:**
+
+- Pobierz i zainstaluj [Node.js](https://nodejs.org/).
+- Node.js zawiera `npm`, który jest wymagany do instalacji zależności projektu.
+
+3. **Zainstaluj Expo CLI:**
+
+- W terminalu wpisz następującą komendę, aby zainstalować Expo CLI globalnie:
+```bash
+npm install -g expo-cli
+```
+
+4. **Zainstaluj zależności projektu:**
+
+- W terminalu przejdź do folderu projektu:
+```bash
+cd folder-z-projektem
+```
+- Następnie zainstaluj wszystkie wymagane zależności:
+```bash
+npm install
+     
+
+
+
+
+
 ## Testy Manualne
 #### Test 1 
 
