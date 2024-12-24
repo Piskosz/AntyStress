@@ -48,6 +48,23 @@ cd folder-z-projektem
 - Następnie zainstaluj wszystkie wymagane zależności:
 ```bash
 npm install
+
+5. **Uruchom projekt:**
+
+- W folderze projektu uruchom serwer deweloperski Expo:
+```bash
+npx expo start
+```
+- Po chwili w terminalu lub w przeglądarce pojawi się kod QR.
+
+6. **Uruchom aplikację na telefonie:**
+- Upewnij się, że Twój telefon i komputer są w tej samej sieci Wi-Fi.
+- Otwórz aplikację **Expo Go** na swoim telefonie i zeskanuj kod QR wyświetlony w terminalu lub w przeglądarce.
+- W terminalu pojawią się także inne opcje uruchomienia aplikacji, takie jak:
+- [Budowa wersji deweloperskiej](https://docs.expo.dev/develop/development-builds/introduction/) (development build),
+- [Emulator Androida](https://docs.expo.dev/workflow/android-studio-emulator/),
+- [Symulator iOS](https://docs.expo.dev/workflow/ios-simulator/),
+- **Expo Go**, czyli środowisko testowe umożliwiające szybkie sprawdzanie aplikacji.
      
 
 
