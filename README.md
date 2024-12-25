@@ -76,61 +76,61 @@ Test 2: 'changes login state when user types'<br>
 Opis: Sprawdza, czy zmiana tekstu w polu "Login" aktualizuje stan komponentu.<br>
 Test 3: 'changes password state when user types'<br>
 
-Opis: Sprawdza, czy zmiana tekstu w polu "Password" aktualizuje stan komponentu.
-Test 4: 'updates login state on text input'
+Opis: Sprawdza, czy zmiana tekstu w polu "Password" aktualizuje stan komponentu.<br>
+Test 4: 'updates login state on text input'<br>
 
-Opis: Sprawdza, czy stan loginu poprawnie aktualizuje się po wprowadzeniu tekstu w polu "Login".
-Test 5: 'password input is secure'
+Opis: Sprawdza, czy stan loginu poprawnie aktualizuje się po wprowadzeniu tekstu w polu "Login".<br>
+Test 5: 'password input is secure'<br>
 
-Opis: Sprawdza, czy pole "Password" ma włączone ukrywanie tekstu (secureTextEntry).
-Test 6: 'renders RejestracjaPage component correctly'
+Opis: Sprawdza, czy pole "Password" ma włączone ukrywanie tekstu (secureTextEntry).<br>
+Test 6: 'renders RejestracjaPage component correctly'<br>
 
-Opis: Sprawdza, czy komponent RejestracjaPage renderuje wszystkie wymagane elementy, takie jak pola loginu, hasła, emaila oraz przycisk "Register".
-Test 7: 'shows validation error when login is empty'
+Opis: Sprawdza, czy komponent RejestracjaPage renderuje wszystkie wymagane elementy, takie jak pola loginu, hasła, emaila oraz przycisk "Register".<br>
+Test 7: 'shows validation error when login is empty'<br>
 
-Opis: Sprawdza, czy pojawia się błąd walidacji, gdy login jest pusty i użytkownik kliknie przycisk "Register".
-Test 8: 'updates login, password, and email correctly'
+Opis: Sprawdza, czy pojawia się błąd walidacji, gdy login jest pusty i użytkownik kliknie przycisk "Register".<br>
+Test 8: 'updates login, password, and email correctly'<br>
 
-Opis: Sprawdza, czy wartości formularza loginu, hasła i emaila są poprawnie aktualizowane po wprowadzeniu tekstu w odpowiednich polach.
-Test 9: 'shows validation error for invalid email format'
+Opis: Sprawdza, czy wartości formularza loginu, hasła i emaila są poprawnie aktualizowane po wprowadzeniu tekstu w odpowiednich polach.<br>
+Test 9: 'shows validation error for invalid email format'<br>
 
-Opis: Sprawdza, czy pojawia się błąd walidacji, gdy wpisany format emaila jest niepoprawny i użytkownik kliknie przycisk "Register".
-Test 10: 'shows validation error if login or password is empty'
+Opis: Sprawdza, czy pojawia się błąd walidacji, gdy wpisany format emaila jest niepoprawny i użytkownik kliknie przycisk "Register".<br>
+Test 10: 'shows validation error if login or password is empty'<br>
 
-Opis: Sprawdza, czy pojawia się błąd walidacji, gdy login lub hasło są puste, a użytkownik kliknie przycisk "Register". Weryfikuje, czy zostanie wywołane Alert.alert z odpowiednim komunikatem o błędzie.
+Opis: Sprawdza, czy pojawia się błąd walidacji, gdy login lub hasło są puste, a użytkownik kliknie przycisk "Register". Weryfikuje, czy zostanie wywołane Alert.alert z odpowiednim komunikatem o błędzie.<br>
 
 ## Testy Integracyjne
 
-Test 1: calls handleLogin function when login button is pressed
+Test 1: calls handleLogin function when login button is pressed<br>
 
-Testuje, czy po naciśnięciu przycisku login wysyłane jest żądanie do API z odpowiednimi parametrami.
-Test 2: shows error alert when login fails
+Testuje, czy po naciśnięciu przycisku login wysyłane jest żądanie do API z odpowiednimi parametrami.<br>
+Test 2: shows error alert when login fails<br>
 
-Testuje, czy w przypadku nieudanego logowania wyświetlany jest odpowiedni komunikat błędu.
-Test 3: navigates to main page on successful login
+Testuje, czy w przypadku nieudanego logowania wyświetlany jest odpowiedni komunikat błędu.<br>
+Test 3: navigates to main page on successful login<br>
 
-Testuje, czy po udanym logowaniu następuje nawigacja do głównej strony.
-Test 4: does not navigate on failed login attempt
+Testuje, czy po udanym logowaniu następuje nawigacja do głównej strony.<br>
+Test 4: does not navigate on failed login attempt<br>
 
-Testuje, czy po nieudanym logowaniu nie dochodzi do nawigacji.
-Test 5: shows error alert on failed login
+Testuje, czy po nieudanym logowaniu nie dochodzi do nawigacji.<br>
+Test 5: shows error alert on failed login<br>
 
-Testuje, czy po nieudanym logowaniu wyświetlany jest alert z odpowiednią wiadomością.
-Test 6: displays success message on successful registration
+Testuje, czy po nieudanym logowaniu wyświetlany jest alert z odpowiednią wiadomością.<br>
+Test 6: displays success message on successful registration<br>
 
-Testuje, czy po udanej rejestracji wyświetla się komunikat o sukcesie.
-Test 7: does not show success message if registration fails
+Testuje, czy po udanej rejestracji wyświetla się komunikat o sukcesie.<br>
+Test 7: does not show success message if registration fails<br>
 
-Testuje, czy nie pojawia się komunikat o sukcesie, jeśli rejestracja nie powiodła się.
-Test 8: does not call API with empty fields during registration
+Testuje, czy nie pojawia się komunikat o sukcesie, jeśli rejestracja nie powiodła się.<br>
+Test 8: does not call API with empty fields during registration<br>
 
-Testuje, czy nie jest wywoływane API, gdy pola rejestracji są puste.
-Test 9: does not call API with empty login or password
+Testuje, czy nie jest wywoływane API, gdy pola rejestracji są puste.<br>
+Test 9: does not call API with empty login or password<br>
 
-Testuje, czy nie jest wywoływane API, gdy login lub hasło są puste.
-Test 10: shows error message if login or password is empty
+Testuje, czy nie jest wywoływane API, gdy login lub hasło są puste.<br>
+Test 10: shows error message if login or password is empty<br>
 
-Testuje, czy wyświetlany jest komunikat o błędzie, gdy login lub hasło są puste.
+Testuje, czy wyświetlany jest komunikat o błędzie, gdy login lub hasło są puste.<br>
 ## Testy Manualne
 #### Test 1 
 
