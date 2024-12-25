@@ -68,13 +68,13 @@ npx expo start
      
 ## Testy Jednostkowe
 
-Test 1: 'renders login component correctly'
+Test 1: 'renders login component correctly'<br>
 
-Opis: Sprawdza, czy komponent Login renderuje wszystkie wymagane elementy, takie jak pole loginu, hasła i przycisk "Login".
-Test 2: 'changes login state when user types'
+Opis: Sprawdza, czy komponent Login renderuje wszystkie wymagane elementy, takie jak pole loginu, hasła i przycisk "Login".<br>
+Test 2: 'changes login state when user types'<br>
 
-Opis: Sprawdza, czy zmiana tekstu w polu "Login" aktualizuje stan komponentu.
-Test 3: 'changes password state when user types'
+Opis: Sprawdza, czy zmiana tekstu w polu "Login" aktualizuje stan komponentu.<br>
+Test 3: 'changes password state when user types'<br>
 
 Opis: Sprawdza, czy zmiana tekstu w polu "Password" aktualizuje stan komponentu.
 Test 4: 'updates login state on text input'
