@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 import MockAdapter from 'axios-mock-adapter';
 import RejestracjaPage from '../../_page/_Rejestration/RejestrationPage';
 
-// Test integracyjny: sprawdza, czy po naciśnięciu przycisku login wysyłane jest żądanie do API z odpowiednimi parametrami.
+// Test sprawdza, czy po naciśnięciu przycisku login funkcja handleLogin jest wywoływana i czy wysyłane jest żądanie do API z odpowiednimi parametrami.
 test('calls handleLogin function when login button is pressed', async () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
     const loginInput = getByPlaceholderText('Login');
@@ -25,14 +25,12 @@ test('calls handleLogin function when login button is pressed', async () => {
       { login: 'testuser', haslo: 'password123' },
       { headers: { 'Content-Type': 'application/json' } }
     );
-  });
-  
-  // Mockowanie zewnętrznych zależności: axios oraz Alert.
-  jest.mock('axios');
-  jest.spyOn(Alert, 'alert').mockImplementation(() => {});
-  
-  // Test integracyjny: sprawdza, czy w przypadku nieudanego logowania wyświetlany jest odpowiedni komunikat błędu.
-  test('shows error alert when login fails', async () => {
+});
+
+// Test sprawdza, czy w przypadku nieudanego logowania wyświetlany jest odpowiedni komunikat błędu.
+jest.mock('axios');
+jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+test('shows error alert when login fails', async () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
     const loginInput = getByPlaceholderText('Login');
     const passwordInput = getByPlaceholderText('Password');
@@ -50,9 +48,10 @@ test('calls handleLogin function when login button is pressed', async () => {
     await waitFor(() => {
       expect(Alert.alert).toHaveBeenCalledWith('Login Error', 'Invalid username or password');
     });
-  });
-  
-  test('navigates to main page on successful login', async () => {
+});
+
+// Test sprawdza, czy po udanym logowaniu następuje nawigacja do strony głównej.
+test('navigates to main page on successful login', async () => {
     const mockNavigate = jest.fn();
     const { getByText, getByPlaceholderText } = render(<Login navigation={{ navigate: mockNavigate }} />);
     
@@ -66,9 +65,10 @@ test('calls handleLogin function when login button is pressed', async () => {
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalledWith('MainPage');
     });
-  });
-  
-  test('does not navigate on failed login attempt', async () => {
+});
+
+// Test sprawdza, czy w przypadku nieudanego logowania nie następuje nawigacja.
+test('does not navigate on failed login attempt', async () => {
     const mockNavigate = jest.fn();
     const { getByText, getByPlaceholderText } = render(<Login navigation={{ navigate: mockNavigate }} />);
     
@@ -84,29 +84,30 @@ test('calls handleLogin function when login button is pressed', async () => {
     await waitFor(() => {
       expect(mockNavigate).not.toHaveBeenCalled();
     });
-  });
+});
 
-// Test integracyjny: sprawdza, czy po nieudanym logowaniu wyświetlany jest alert z odpowiednią wiadomością.
+// Test sprawdza, czy po nieudanym logowaniu wyświetlany jest alert z odpowiednią wiadomością.
 jest.spyOn(Alert, 'alert');
 test('shows error alert on failed login', async () => {
-  const mock = new MockAdapter(axios);
+    const mock = new MockAdapter(axios);
   
-  mock.onPost('http://172.28.16.1:8080/testowy').reply(400, 'Invalid username or password');
+    mock.onPost('http://172.28.16.1:8080/testowy').reply(400, 'Invalid username or password');
   
-  const { getByPlaceholderText, getByText } = render(<Login />);
+    const { getByPlaceholderText, getByText } = render(<Login />);
   
-  fireEvent.changeText(getByPlaceholderText('Login'), 'wronguser');
-  fireEvent.changeText(getByPlaceholderText('Password'), 'wrongpassword');
+    fireEvent.changeText(getByPlaceholderText('Login'), 'wronguser');
+    fireEvent.changeText(getByPlaceholderText('Password'), 'wrongpassword');
   
-  fireEvent.press(getByText('Login'));
+    fireEvent.press(getByText('Login'));
 
-  await waitFor(() => {
-    expect(Alert.alert).toHaveBeenCalledWith('Login Error', 'Invalid username or password');
-  });
+    await waitFor(() => {
+        expect(Alert.alert).toHaveBeenCalledWith('Login Error', 'Invalid username or password');
+    });
 
-  mock.reset();
+    mock.reset();
 });
-// Integracyjny test, sprawdza czy po udanej rejestracji wyświetla się komunikat o sukcesie.
+
+// Test sprawdza, czy po udanej rejestracji wyświetlany jest komunikat o sukcesie.
 test('displays success message on successful registration', async () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
     
@@ -119,10 +120,9 @@ test('displays success message on successful registration', async () => {
     await fireEvent.press(getByText('Register'));
   
     expect(getByText('User successfully registered!')).toBeTruthy();
-  });
-  jest.spyOn(Alert, 'alert');
-  
-// Integracyjny test, sprawdza czy po nieudanej rejestracji pojawia się błąd.
+});
+
+// Test sprawdza, czy w przypadku nieudanej rejestracji pojawia się alert z błędem.
 test('does not show success message if registration fails', async () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
   
@@ -137,58 +137,57 @@ test('does not show success message if registration fails', async () => {
     expect(() => getByText('User successfully registered!')).toThrow();
   
     expect(Alert.alert).toHaveBeenCalledWith('Registration error', 'An unexpected error occurred.');
-  });
-  beforeEach(() => {
-    axios.post.mockClear(); // Clear previous calls
-  });
-  test('does not call API with empty fields during registration', async () => {
+});
+
+beforeEach(() => {
+    axios.post.mockClear(); // Usunięcie poprzednich wywołań axiosa przed każdym testem.
+});
+
+// Test sprawdza, czy żądanie do API nie jest wysyłane, jeśli pola rejestracji są puste.
+test('does not call API with empty fields during registration', async () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
   
-    fireEvent.changeText(getByPlaceholderText('LOGIN'), ''); // Empty login
-    fireEvent.changeText(getByPlaceholderText('PASSWORD'), ''); // Empty password
-    fireEvent.changeText(getByPlaceholderText('EMAIL'), ''); // Empty email
+    fireEvent.changeText(getByPlaceholderText('LOGIN'), ''); // Puste pole login
+    fireEvent.changeText(getByPlaceholderText('PASSWORD'), ''); // Puste pole password
+    fireEvent.changeText(getByPlaceholderText('EMAIL'), ''); // Puste pole email
   
     await fireEvent.press(getByText('Register'));
   
     expect(axios.post).not.toHaveBeenCalled();
-  });
-  beforeEach(() => {
-    axios.post.mockClear(); // Clear previous calls
-  });
-  
-  test('does not call API with empty login or password', async () => {
+});
+
+// Test sprawdza, czy żądanie do API nie jest wysyłane, jeśli login lub hasło są puste podczas logowania.
+test('does not call API with empty login or password', async () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
   
     const loginInput = getByPlaceholderText('Login');
     const passwordInput = getByPlaceholderText('Password');
     const loginButton = getByText('Login');
   
-    fireEvent.changeText(loginInput, ''); // Empty login
-    fireEvent.changeText(passwordInput, ''); // Empty password
+    fireEvent.changeText(loginInput, ''); // Puste pole login
+    fireEvent.changeText(passwordInput, ''); // Puste pole password
   
     fireEvent.press(loginButton);
   
     await waitFor(() => {
-      expect(axios.post).not.toHaveBeenCalled();
+        expect(axios.post).not.toHaveBeenCalled();
     });
-  });
-  beforeEach(() => {
-    axios.post.mockClear(); // Clear previous calls
-  });
-  test('shows error message if login or password is empty', async () => {
+});
+
+// Test sprawdza, czy w przypadku pustych pól loginu i hasła wyświetlany jest odpowiedni komunikat błędu.
+test('shows error message if login or password is empty', async () => {
     const { getByText, getByPlaceholderText } = render(<Login />);
   
     const loginInput = getByPlaceholderText('Login');
     const passwordInput = getByPlaceholderText('Password');
     const loginButton = getByText('Login');
   
-    fireEvent.changeText(loginInput, ''); // Empty login
-    fireEvent.changeText(passwordInput, ''); // Empty password
+    fireEvent.changeText(loginInput, ''); // Puste pole login
+    fireEvent.changeText(passwordInput, ''); // Puste pole password
   
     fireEvent.press(loginButton);
   
     await waitFor(() => {
-      expect(Alert.alert).toHaveBeenCalledWith('Input Error', 'Login and password cannot be empty');
+        expect(Alert.alert).toHaveBeenCalledWith('Input Error', 'Login and password cannot be empty');
     });
-  });
-  
+});
