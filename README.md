@@ -99,7 +99,7 @@ Test 10: 'shows validation error if login or password is empty'<br>
 
 Opis: Sprawdza, czy pojawia się błąd walidacji, gdy login lub hasło są puste, a użytkownik kliknie przycisk "Register". Weryfikuje, czy zostanie wywołane Alert.alert z odpowiednim komunikatem o błędzie.<br>
 
-## Testy Integracyjne
+## Testy Integracyjne(./__tests__/Integracyjne/)
 
 Test 1: calls handleLogin function when login button is pressed<br>
 
