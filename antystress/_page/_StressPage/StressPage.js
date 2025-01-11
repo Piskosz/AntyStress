@@ -5,10 +5,10 @@ const StressPage = ({ navigation }) => {
   const [stressLevel, setStressLevel] = useState(0);
 
   const handleButtonPress = (value) => {
-    console.log('Naciśnięto przycisk z wartością:', value);
+    console.log('Button pressed with value:', value);
     setStressLevel(value);
     if (value <= 3) {
-      Alert.alert('Weź się do roboty');
+      Alert.alert('Get to work');
     } else {
       navigation.navigate('StressPage2');
     }
@@ -16,7 +16,7 @@ const StressPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Wskaźnik stresu: {stressLevel}</Text>
+      <Text style={styles.heading}>Stress Level: {stressLevel}</Text>
       {[...Array(10)].map((_, index) => (
         <TouchableOpacity
           key={index}

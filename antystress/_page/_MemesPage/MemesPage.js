@@ -44,7 +44,7 @@ const Memes = ({ navigation }) => {
         resizeMode="contain"
       />
       <TouchableOpacity style={styles.button} onPress={nextImage}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );

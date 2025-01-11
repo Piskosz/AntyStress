@@ -51,7 +51,7 @@ const StressPage2 = ({ navigation }) => {
       )}
 
       <TouchableOpacity style={styles.button} onPress={nextMedia}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   media: {
     width: '90%',
-    height: 300, 
+    height: 300,
     marginBottom: 20,
   },
   button: {

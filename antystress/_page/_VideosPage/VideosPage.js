@@ -34,7 +34,7 @@ const Videos = ({ navigation }) => {
         resizeMode="contain"
       />
       <TouchableOpacity style={styles.button} onPress={nextVideo}>
-        <Text style={styles.buttonText}>Następny</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </TouchableOpacity>
     </View>
   );

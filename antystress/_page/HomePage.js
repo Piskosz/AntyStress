@@ -16,12 +16,12 @@ const HomeScreen = ({ navigation }) => {
         source={require('./mozg.jpg')}
         style={styles.image}
       />
-      <Text style={styles.heading}>Strona główna</Text>
+      <Text style={styles.heading}>Home Page</Text>
       <TouchableOpacity style={styles.button} onPress={goToRejestracja}>
-        <Text style={styles.buttonText}>Rejestracja</Text>
+        <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={goToLogin}>
-        <Text style={styles.buttonText}>Logowanie</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );

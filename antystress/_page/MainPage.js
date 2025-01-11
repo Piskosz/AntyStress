@@ -5,9 +5,11 @@ const MainPage = ({ navigation }) => {
   const goToStressPage = () => {
     navigation.navigate('StressPage');
   };
+
   const goToVideos = () => {
     navigation.navigate('Videos');
   };
+
   const goToMemes = () => {
     navigation.navigate('Memes');
   };
@@ -19,13 +21,13 @@ const MainPage = ({ navigation }) => {
         style={styles.image}
       />
       <TouchableOpacity style={styles.button} onPress={goToMemes}>
-        <Text style={styles.buttonText}>Memy</Text>
+        <Text style={styles.buttonText}>Memes</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={goToVideos}>
-        <Text style={styles.buttonText}>Filmy</Text>
+        <Text style={styles.buttonText}>Videos</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={goToStressPage}>
-        <Text style={styles.buttonText}>Zmierz stres</Text>
+        <Text style={styles.buttonText}>Measure Stress</Text>
       </TouchableOpacity>
     </View>
   );

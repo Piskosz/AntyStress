@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
 import axios from 'axios';
 
 const RejestracjaPage = () => {
@@ -14,7 +14,42 @@ const RejestracjaPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateInputs = () => {
+    const { login, haslo, mail } = formData;
+
+    // Sprawdzenie, czy login i hasło są puste
+    if (!login || !haslo) {
+      Alert.alert('Validation Error', 'Login and Password cannot be empty.');
+      return false;
+    }
+
+    // Sprawdzenie, czy login i hasło nie przekraczają 20 znaków
+    if (login.length > 20 || haslo.length > 20) {
+      Alert.alert('Validation Error', 'Login and Password cannot exceed 20 characters.');
+      return false;
+    }
+
+    // Sprawdzenie, czy e-mail jest pusty
+    if (!mail) {
+      Alert.alert('Validation Error', 'Email cannot be empty.');
+      return false;
+    }
+
+    // Sprawdzenie poprawności formatu e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(mail)) {
+      Alert.alert('Validation Error', 'Please enter a valid email address.');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
+    if (!validateInputs()) {
+      return; // Stops execution if validation fails
+    }
+
     try {
       const response = await axios.post(
         'http://172.28.16.1:8080/Rejestracja/dodawanie/',
@@ -28,14 +63,21 @@ const RejestracjaPage = () => {
       console.log(response.data.message);
       setRegistrationSuccess(true);
     } catch (error) {
-      console.error('Błąd podczas rejestracji:', error);
-      console.error('Szczegóły błędu:', error.response.data);
+      if (error.response) {
+        // Server-side error (500, 400, etc.)
+        Alert.alert('Registration error', error.response?.data || 'Server error');
+      } else {
+        // Network or unexpected error
+        Alert.alert('Registration error', 'An unexpected error occurred.');
+      }
+      console.error('Registration error:', error);
+      console.error('Error details:', error.response?.data);
     }
   };
 
   const renderSuccessMessage = () => {
     if (registrationSuccess) {
-      return <Text style={styles.successMessage}>Poprawnie zarejestrowano użytkownika!</Text>;
+      return <Text style={styles.successMessage}>User successfully registered!</Text>;
     }
     return null;
   };
@@ -58,7 +100,7 @@ const RejestracjaPage = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="HASŁO"
+          placeholder="PASSWORD"
           onChangeText={(text) => handleInputChange('haslo', text)}
           value={formData.haslo}
           secureTextEntry={true}
@@ -67,12 +109,13 @@ const RejestracjaPage = () => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="MAIL"
+          placeholder="EMAIL"
           onChangeText={(text) => handleInputChange('mail', text)}
           value={formData.mail}
         />
       </View>
-      <Button title="Zarejestruj się" onPress={handleSubmit} />
+      {/* Register button */}
+      <Button title="Register" onPress={handleSubmit} />
     </View>
   );
 };
