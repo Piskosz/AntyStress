@@ -6,16 +6,16 @@ import { Alert } from 'react-native';
 import MockAdapter from 'axios-mock-adapter';
 import RejestracjaPage from '../../_page/_Rejestration/RejestrationPage';
 
-// Test jednostkowy: sprawdza, czy komponent renderuje wszystkie wymagane elementy poprawnie.
+// Sprawdza, czy komponent logowania renderuje wszystkie wymagane elementy.
 test('renders login component correctly', () => {
     const { getByPlaceholderText, getByText } = render(<Login />);
     
     expect(getByPlaceholderText('Login')).toBeTruthy();
     expect(getByPlaceholderText('Password')).toBeTruthy();
     expect(getByText('Login')).toBeTruthy();
-  });
+});
 
-  // Test jednostkowy: sprawdza, czy zmiana tekstu w polu login aktualizuje stan komponentu.
+// Sprawdza, czy wpisywanie tekstu w polu login aktualizuje stan komponentu.
 test('changes login state when user types', () => {
     const { getByPlaceholderText } = render(<Login />);
     const loginInput = getByPlaceholderText('Login');
@@ -23,9 +23,9 @@ test('changes login state when user types', () => {
     fireEvent.changeText(loginInput, 'testuser');
     
     expect(loginInput.props.value).toBe('testuser');
-  });
+});
 
-  // Test jednostkowy: sprawdza, czy zmiana tekstu w polu hasło aktualizuje stan komponentu.
+// Sprawdza, czy wpisywanie tekstu w polu hasło aktualizuje stan komponentu.
 test('changes password state when user types', () => {
     const { getByPlaceholderText } = render(<Login />);
     const passwordInput = getByPlaceholderText('Password');
@@ -33,50 +33,45 @@ test('changes password state when user types', () => {
     fireEvent.changeText(passwordInput, 'password123');
     
     expect(passwordInput.props.value).toBe('password123');
-  });
-  
-  // Mockowanie zewnętrznej zależności axios.
-  jest.mock('axios');
+});
 
-  // Test jednostkowy: sprawdza, czy stan loginu aktualizuje się po wprowadzeniu tekstu w pole tekstowe.
+// Sprawdza, czy wpisywanie tekstu w polu login aktualizuje jego wartość.
 test('updates login state on text input', () => {
     const { getByPlaceholderText } = render(<Login />);
     
     fireEvent.changeText(getByPlaceholderText('Login'), 'testuser');
     
     expect(getByPlaceholderText('Login').props.value).toBe('testuser');
-  });
-  
-  // Test jednostkowy: sprawdza, czy pole hasła ma włączone ukrywanie tekstu (secureTextEntry).
-  test('password input is secure', () => {
+});
+
+// Sprawdza, czy pole hasła ma ustawione ukrywanie tekstu.
+test('password input is secure', () => {
     const { getByPlaceholderText } = render(<Login />);
     
     const passwordInput = getByPlaceholderText('Password');
     expect(passwordInput.props.secureTextEntry).toBe(true);
-  });
-  // Jednostkowy test, sprawdza tylko renderowanie komponentu.
+});
+
+// Sprawdza, czy komponent rejestracji renderuje wszystkie wymagane elementy.
 test('renders RejestracjaPage component correctly', () => {
     const { getByPlaceholderText, getByText } = render(<RejestracjaPage />);
   
     expect(getByPlaceholderText('LOGIN')).toBeTruthy();
     expect(getByPlaceholderText('PASSWORD')).toBeTruthy();
     expect(getByPlaceholderText('EMAIL')).toBeTruthy();
-  
     expect(getByText('Register')).toBeTruthy();
-  });
-  
+});
 
-// Jednostkowy test, sprawdza walidację pustego loginu.
+// Sprawdza, czy pojawia się błąd walidacji, gdy pole login jest puste.
 test('shows validation error when login is empty', () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
   
     fireEvent.press(getByText('Register'));
   
     expect(() => getByText('Validation Error')).toBeTruthy();
-  });
+});
 
-  
-// Jednostkowy test, sprawdza czy wartości formularza są poprawnie aktualizowane.
+// Sprawdza, czy wartości formularza są poprawnie aktualizowane.
 test('updates login, password, and email correctly', () => {
     const { getByPlaceholderText } = render(<RejestracjaPage />);
   
@@ -91,10 +86,10 @@ test('updates login, password, and email correctly', () => {
     expect(loginInput.props.value).toBe('testuser');
     expect(passwordInput.props.value).toBe('password123');
     expect(emailInput.props.value).toBe('test@example.com');
-  });
-// Jednostkowy test, sprawdza walidację niepoprawnego formatu emaila.
+});
 
-  test('shows validation error for invalid email format', () => {
+// Sprawdza, czy pojawia się błąd walidacji dla niepoprawnego formatu emaila.
+test('shows validation error for invalid email format', () => {
     const { getByText, getByPlaceholderText } = render(<RejestracjaPage />);
   
     const emailInput = getByPlaceholderText('EMAIL');
@@ -103,23 +98,21 @@ test('updates login, password, and email correctly', () => {
     fireEvent.press(getByText('Register'));
   
     expect(() => getByText('Validation Error')).toBeTruthy();
-  });
+});
 
-  jest.spyOn(Alert, 'alert'); // Zamockowanie Alert.alert
+jest.spyOn(Alert, 'alert'); // Zamockowanie Alert.alert
 
-  test('shows validation error if login or password is empty', async () => {
+// Sprawdza, czy pojawia się błąd walidacji, gdy login lub hasło są puste.
+test('shows validation error if login or password is empty', async () => {
     const { getByPlaceholderText, getByText } = render(<RejestracjaPage />);
   
-    fireEvent.changeText(getByPlaceholderText('LOGIN'), '');  // Login jest pusty
-    fireEvent.changeText(getByPlaceholderText('PASSWORD'), '');  // Hasło jest puste
-    fireEvent.changeText(getByPlaceholderText('EMAIL'), 'test@example.com');  // Email jest podany
+    fireEvent.changeText(getByPlaceholderText('LOGIN'), '');
+    fireEvent.changeText(getByPlaceholderText('PASSWORD'), '');
+    fireEvent.changeText(getByPlaceholderText('EMAIL'), 'test@example.com');
   
-    fireEvent.press(getByText('Register'));  // Kliknięcie przycisku "Register"
+    fireEvent.press(getByText('Register'));
   
-    // Czekamy na wywołanie Alert.alert
     await waitFor(() => {
-      // Sprawdzamy, czy Alert.alert zostało wywołane z odpowiednimi argumentami
-      expect(Alert.alert).toHaveBeenCalledWith('Validation Error', 'Login and Password cannot be empty.');
+        expect(Alert.alert).toHaveBeenCalledWith('Validation Error', 'Login and Password cannot be empty.');
     });
-  });
-  
+});
