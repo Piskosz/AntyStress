@@ -7,6 +7,12 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
+    // Walidacja, aby sprawdzić, czy pola login i hasło nie są puste
+    if (!login || !password) {
+      Alert.alert('Input Error', 'Login and password cannot be empty');
+      return; // Zatrzymuje dalsze wykonanie funkcji
+    }
+  
     try {
       const response = await axios.post(
         'http://172.28.16.1:8080/testowy',
@@ -17,6 +23,7 @@ const Login = ({ navigation }) => {
           }
         }
       );
+      
       if (response.status === 200) {
         const token = response.data;
         console.log('JWT Token:', token);
@@ -38,6 +45,8 @@ const Login = ({ navigation }) => {
       }
     }
   };
+  
+  
 
   return (
     <View style={styles.container}>
