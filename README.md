@@ -66,7 +66,7 @@ npx expo start
 - [Symulator iOS](https://docs.expo.dev/workflow/ios-simulator/),
 - **Expo Go**, czyli środowisko testowe umożliwiające szybkie sprawdzanie aplikacji.
      
-## Testy Jednostkowe
+## Testy Jednostkowe [Testy Jednostkowe](antystress/__tests__/Jednostkowe/Jednostkowe.test.js)
 
 Test 1: 'renders login component correctly'<br>
 
