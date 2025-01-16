@@ -243,3 +243,6 @@ Testuje, czy wyświetlany jest komunikat o błędzie, gdy login lub hasło są p
 | **Oczekiwany rezultat** | bład przy loginie i haśle                                              |
 
 ---
+![image](https://github.com/user-attachments/assets/3352448d-9ab3-40df-a9d0-6a157ac090b7)
+![image](https://github.com/user-attachments/assets/d2ce2ceb-5167-405b-bf5a-3c69f6f00c53)
+
